@@ -1,20 +1,20 @@
-# Perplexica Search API Documentation
+# Perplexica 搜索 API 文档
 
-## Overview
+## 概述
 
-Perplexica’s Search API makes it easy to use our AI-powered search engine. You can run different types of searches, pick the models you want to use, and get the most recent info. Follow the following headings to learn more about Perplexica's search API.
+Perplexica 的搜索 API 使您能够轻松使用我们的 AI 驱动的搜索引擎。您可以运行不同类型的搜索，选择您想使用的模型，并获取最新信息。请按照以下标题了解更多关于 Perplexica 搜索 API 的信息。
 
-## Endpoint
+## 端点
 
 ### **POST** `http://localhost:3000/api/search`
 
-**Note**: Replace `3000` with any other port if you've changed the default PORT
+**注意**：如果您更改了默认端口，请将 `3000` 替换为任何其他端口
 
-### Request
+### 请求
 
-The API accepts a JSON object in the request body, where you define the focus mode, chat models, embedding models, and your query.
+API 接受请求体中的 JSON 对象，您可以在其中定义焦点模式、聊天模型、嵌入模型和您的查询。
 
-#### Request Body Structure
+#### 请求体结构
 
 ```json
 {
@@ -38,35 +38,35 @@ The API accepts a JSON object in the request body, where you define the focus mo
 }
 ```
 
-### Request Parameters
+### 请求参数
 
-- **`chatModel`** (object, optional): Defines the chat model to be used for the query. For model details you can send a GET request at `http://localhost:3000/api/models`. Make sure to use the key value (For example "gpt-4o-mini" instead of the display name "GPT 4 omni mini").
+- **`chatModel`** (object, optional): 定义用于查询的聊天模型。有关模型详细信息，您可以向 `http://localhost:3000/api/models` 发送 GET 请求。请确保使用键值（例如使用 "gpt-4o-mini" 而不是显示名称 "GPT 4 omni mini"）。
 
-  - `provider`: Specifies the provider for the chat model (e.g., `openai`, `ollama`).
-  - `name`: The specific model from the chosen provider (e.g., `gpt-4o-mini`).
-  - Optional fields for custom OpenAI configuration:
-    - `customOpenAIBaseURL`: If you’re using a custom OpenAI instance, provide the base URL.
-    - `customOpenAIKey`: The API key for a custom OpenAI instance.
+  - `provider`: 指定聊天模型的提供商（例如 `openai`、`ollama`）。
+  - `name`: 来自所选提供商的特定模型（例如 `gpt-4o-mini`）。
+  - 自定义 OpenAI 配置的可选字段：
+    - `customOpenAIBaseURL`: 如果您使用自定义 OpenAI 实例，请提供基础 URL。
+    - `customOpenAIKey`: 自定义 OpenAI 实例的 API 密钥。
 
-- **`embeddingModel`** (object, optional): Defines the embedding model for similarity-based searching. For model details you can send a GET request at `http://localhost:3000/api/models`. Make sure to use the key value (For example "text-embedding-3-large" instead of the display name "Text Embedding 3 Large").
+- **`embeddingModel`** (object, optional): 定义用于基于相似性搜索的嵌入模型。有关模型详细信息，您可以向 `http://localhost:3000/api/models` 发送 GET 请求。请确保使用键值（例如使用 "text-embedding-3-large" 而不是显示名称 "Text Embedding 3 Large"）。
 
-  - `provider`: The provider for the embedding model (e.g., `openai`).
-  - `name`: The specific embedding model (e.g., `text-embedding-3-large`).
+  - `provider`: 嵌入模型的提供商（例如 `openai`）。
+  - `name`: 特定的嵌入模型（例如 `text-embedding-3-large`）。
 
-- **`focusMode`** (string, required): Specifies which focus mode to use. Available modes:
+- **`focusMode`** (string, required): 指定要使用的焦点模式。可用模式：
 
   - `webSearch`, `academicSearch`, `writingAssistant`, `wolframAlphaSearch`, `youtubeSearch`, `redditSearch`.
 
-- **`optimizationMode`** (string, optional): Specifies the optimization mode to control the balance between performance and quality. Available modes:
+- **`optimizationMode`** (string, optional): 指定优化模式以控制性能和质量的平衡。可用模式：
 
-  - `speed`: Prioritize speed and return the fastest answer.
-  - `balanced`: Provide a balanced answer with good speed and reasonable quality.
+  - `speed`: 优先考虑速度并返回最快答案。
+  - `balanced`: 提供速度和质量平衡良好的答案。
 
-- **`query`** (string, required): The search query or question.
+- **`query`** (string, required): 搜索查询或问题。
 
-- **`systemInstructions`** (string, optional): Custom instructions provided by the user to guide the AI's response. These instructions are treated as user preferences and have lower priority than the system's core instructions. For example, you can specify a particular writing style, format, or focus area.
+- **`systemInstructions`** (string, optional): 用户提供的自定义指令，用于引导 AI 的响应。这些指令被视为用户偏好，优先级低于系统的核心指令。例如，您可以指定特定的写作风格、格式或重点领域。
 
-- **`history`** (array, optional): An array of message pairs representing the conversation history. Each pair consists of a role (either 'human' or 'assistant') and the message content. This allows the system to use the context of the conversation to refine results. Example:
+- **`history`** (array, optional): 表示对话历史的消息对数组。每对包含一个角色（'human' 或 'assistant'）和消息内容。这使系统能够使用对话的上下文来优化结果。示例：
 
   ```json
   [
@@ -75,13 +75,13 @@ The API accepts a JSON object in the request body, where you define the focus mo
   ]
   ```
 
-- **`stream`** (boolean, optional): When set to `true`, enables streaming responses. Default is `false`.
+- **`stream`** (boolean, optional): 设置为 `true` 时启用流式响应。默认为 `false`。
 
-### Response
+### 响应
 
-The response from the API includes both the final message and the sources used to generate that message.
+API 的响应包括最终消息和用于生成该消息的来源。
 
-#### Standard Response (stream: false)
+#### 标准响应（stream: false）
 
 ```json
 {
@@ -106,11 +106,11 @@ The response from the API includes both the final message and the sources used t
 }
 ```
 
-#### Streaming Response (stream: true)
+#### 流式响应（stream: true）
 
-When streaming is enabled, the API returns a stream of newline-delimited JSON objects. Each line contains a complete, valid JSON object. The response has Content-Type: application/json.
+启用流式传输时，API 返回换行符分隔的 JSON 对象流。每行包含一个完整、有效的 JSON 对象。响应的 Content-Type 为 application/json。
 
-Example of streamed response objects:
+流式响应对象的示例：
 
 ```
 {"type":"init","data":"Stream connected"}
@@ -121,25 +121,25 @@ Example of streamed response objects:
 {"type":"done"}
 ```
 
-Clients should process each line as a separate JSON object. The different message types include:
+客户端应将每行作为单独的 JSON 对象处理。不同的消息类型包括：
 
-- **`init`**: Initial connection message
-- **`sources`**: All sources used for the response
-- **`response`**: Chunks of the generated answer text
-- **`done`**: Indicates the stream is complete
+- **`init`**: 初始连接消息
+- **`sources`**: 用于响应的所有来源
+- **`response`**: 生成的答案文本块
+- **`done`**: 表示流式传输完成
 
-### Fields in the Response
+### 响应中的字段
 
-- **`message`** (string): The search result, generated based on the query and focus mode.
-- **`sources`** (array): A list of sources that were used to generate the search result. Each source includes:
-  - `pageContent`: A snippet of the relevant content from the source.
-  - `metadata`: Metadata about the source, including:
-    - `title`: The title of the webpage.
-    - `url`: The URL of the webpage.
+- **`message`** (string): 基于查询和焦点模式生成的搜索结果。
+- **`sources`** (array): 用于生成搜索结果的来源列表。每个来源包括：
+  - `pageContent`: 来自来源的相关内容片段。
+  - `metadata`: 关于来源的元数据，包括：
+    - `title`: 网页标题。
+    - `url`: 网页 URL。
 
-### Error Handling
+### 错误处理
 
-If an error occurs during the search process, the API will return an appropriate error message with an HTTP status code.
+如果在搜索过程中发生错误，API 将返回适当的错误消息和 HTTP 状态码。
 
-- **400**: If the request is malformed or missing required fields (e.g., no focus mode or query).
-- **500**: If an internal server error occurs during the search.
+- **400**: 如果请求格式错误或缺少必需字段（例如没有焦点模式或查询）。
+- **500**: 如果在搜索过程中发生内部服务器错误。
