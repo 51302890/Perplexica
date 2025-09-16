@@ -4,7 +4,7 @@ general:
   instance_name: 'searxng'
 
 search:
-  autocomplete: 'google'
+  autocomplete: ''
   formats:
     - html
     - json
@@ -15,3 +15,338 @@ server:
 engines:
   - name: wolframalpha
     disabled: false
+
+  - name: 360search
+    engine: 360search
+    shortcut: 360so
+    disabled: false
+
+  - name: 360search videos
+    engine: 360search_videos
+    shortcut: 360sov
+    disabled: false
+
+  - name: baidu
+    baidu_category: general
+    categories: [general]
+    engine: baidu
+    shortcut: bd
+    disabled: false
+
+  - name: baidu images
+    baidu_category: images
+    categories: [images]
+    engine: baidu
+    shortcut: bdi
+    disabled: false
+
+  - name: baidu kaifa
+    baidu_category: it
+    categories: [it]
+    engine: baidu
+    shortcut: bdk
+    disabled: false
+
+  - name: quark
+    quark_category: general
+    categories: [general]
+    engine: quark
+    shortcut: qk
+    disabled: false
+
+  - name: quark images
+    quark_category: images
+    categories: [images]
+    engine: quark
+    shortcut: qki
+    disabled: false
+
+  - name: sogou
+    engine: sogou
+    shortcut: sogou
+    disabled: false
+
+  - name: sogou images
+    engine: sogou_images
+    shortcut: sogoui
+    disabled: false
+
+  - name: sogou videos
+    engine: sogou_videos
+    shortcut: sogouv
+    disabled: false
+
+  - name: sogou wechat
+    engine: sogou_wechat
+    shortcut: sogouw
+    disabled: false
+
+  - name: mojeek
+    shortcut: mjk
+    engine: mojeek
+    categories: [general, web]
+    disabled: false
+
+  - name: mojeek images
+    shortcut: mjkimg
+    engine: mojeek
+    categories: [images, web]
+    search_type: images
+    paging: false
+    disabled: false
+
+  - name: mojeek news
+    shortcut: mjknews
+    engine: mojeek
+    categories: [news, web]
+    search_type: news
+    paging: false
+    disabled: false
+
+  - name: presearch
+    engine: presearch
+    search_type: search
+    categories: [general, web]
+    shortcut: ps
+    timeout: 4.0
+    disabled: false
+
+  - name: presearch images
+    engine: presearch
+    network: presearch
+    search_type: images
+    categories: [images, web]
+    timeout: 4.0
+    shortcut: psimg
+    disabled: false
+
+  - name: presearch videos
+    engine: presearch
+    network: presearch
+    search_type: videos
+    categories: [general, web]
+    timeout: 4.0
+    shortcut: psvid
+    disabled: true
+
+  - name: presearch news
+    engine: presearch
+    network: presearch
+    search_type: news
+    categories: [news, web]
+    timeout: 4.0
+    shortcut: psnews
+    disabled: false
+
+  - name: searchmysite
+    engine: xpath
+    shortcut: sms
+    categories: general
+    paging: true
+    search_url: https://searchmysite.net/search/?q={query}&page={pageno}
+    results_xpath: //div[contains(@class,'search-result')]
+    url_xpath: .//a[contains(@class,'result-link')]/@href
+    title_xpath: .//span[contains(@class,'result-title-txt')]/text()
+    content_xpath: ./p[@id='result-hightlight']
+    disabled: false
+    about:
+      website: https://searchmysite.net
+
+  - name: right dao
+    engine: xpath
+    paging: true
+    page_size: 12
+    search_url: https://rightdao.com/search?q={query}&start={pageno}
+    results_xpath: //div[contains(@class, "description")]
+    url_xpath: ../div[contains(@class, "title")]/a/@href
+    title_xpath: ../div[contains(@class, "title")]
+    content_xpath: .
+    categories: general
+    shortcut: rd
+    disabled: false
+    about:
+      website: https://rightdao.com/
+      use_official_api: false
+      require_api_key: false
+      results: HTML
+
+  - name: crowdview
+    engine: json_engine
+    shortcut: cv
+    categories: general
+    paging: false
+    search_url: https://crowdview-next-js.onrender.com/api/search-v3?query={query}
+    results_query: results
+    url_query: link
+    title_query: title
+    content_query: snippet
+    title_html_to_text: true
+    content_html_to_text: true
+    disabled: false
+    about:
+      website: https://crowdview.ai/
+
+  - name: bpb
+    engine: bpb
+    shortcut: bpb
+    disabled: false
+
+  - name: brave
+    engine: brave
+    shortcut: br
+    time_range_support: true
+    paging: true
+    categories: [general, web]
+    brave_category: search
+    # brave_spellcheck: true
+    disabled: true
+
+  - name: brave.images
+    engine: brave
+    network: brave
+    shortcut: brimg
+    categories: [images, web]
+    brave_category: images
+    disabled: true
+
+  - name: brave.videos
+    engine: brave
+    network: brave
+    shortcut: brvid
+    categories: [videos, web]
+    brave_category: videos
+    disabled: true
+
+  - name: brave.news
+    engine: brave
+    network: brave
+    shortcut: brnews
+    categories: news
+    brave_category: news
+    disabled: true
+
+  - name: duckduckgo
+    engine: duckduckgo
+    shortcut: ddg
+    disabled: true
+
+  - name: duckduckgo images
+    engine: duckduckgo_extra
+    categories: [images, web]
+    ddg_category: images
+    shortcut: ddi
+    disabled: true
+
+  - name: duckduckgo videos
+    engine: duckduckgo_extra
+    categories: [videos, web]
+    ddg_category: videos
+    shortcut: ddv
+    disabled: true
+
+  - name: duckduckgo news
+    engine: duckduckgo_extra
+    categories: [news, web]
+    ddg_category: news
+    shortcut: ddn
+    disabled: true
+
+  - name: duckduckgo weather
+    engine: duckduckgo_weather
+    shortcut: ddw
+    disabled: true
+
+  - name: google
+    engine: google
+    shortcut: go
+    # additional_tests:
+    #   android: *test_android
+    disabled: true
+
+  - name: google images
+    engine: google_images
+    shortcut: goi
+    # additional_tests:
+    #   android: *test_android
+    #   dali:
+    #     matrix:
+    #       query: ['Dali Christ']
+    #       lang: ['en', 'de', 'fr', 'zh-CN']
+    #     result_container:
+    #       - ['one_title_contains', 'Salvador']
+    disabled: true
+
+  - name: google news
+    engine: google_news
+    shortcut: gon
+    # additional_tests:
+    #   android: *test_android
+    disabled: true
+
+  - name: google videos
+    engine: google_videos
+    shortcut: gov
+    # additional_tests:
+    #   android: *test_android
+    disabled: true
+
+  - name: google scholar
+    engine: google_scholar
+    shortcut: gos
+    disabled: true
+
+  - name: google play apps
+    engine: google_play
+    categories: [files, apps]
+    shortcut: gpa
+    play_categ: apps
+    disabled: true
+
+  - name: google play movies
+    engine: google_play
+    categories: videos
+    shortcut: gpm
+    play_categ: movies
+    disabled: true
+
+  - name: startpage
+    engine: startpage
+    shortcut: sp
+    startpage_categ: web
+    categories: [general, web]
+    additional_tests:
+      #rosebud: *test_rosebud
+    disabled: true
+
+  - name: startpage news
+    engine: startpage
+    startpage_categ: news
+    categories: [news, web]
+    shortcut: spn
+    disabled: true
+
+  - name: startpage images
+    engine: startpage
+    startpage_categ: images
+    categories: [images, web]
+    shortcut: spi
+    disabled: true
+
+  - name: wikidata
+    engine: wikidata
+    shortcut: wd
+    timeout: 3.0
+    weight: 2
+    # add "list" to the array to get results in the results list
+    display_type: ["infobox"]
+    #tests: *tests_infobox
+    categories: [general]
+    disabled: true
+
+  - name: wikipedia
+    engine: wikipedia
+    shortcut: wp
+    # add "list" to the array to get results in the results list
+    display_type: ["infobox"]
+    categories: [general]
+    disabled: true
