@@ -1,11 +1,11 @@
-# Perplexica's Architecture
+# Perplexica 的架构
 
-Perplexica's architecture consists of the following key components:
+Perplexica 的架构由以下关键组件组成：
 
-1. **User Interface**: A web-based interface that allows users to interact with Perplexica for searching images, videos, and much more.
-2. **Agent/Chains**: These components predict Perplexica's next actions, understand user queries, and decide whether a web search is necessary.
-3. **SearXNG**: A metadata search engine used by Perplexica to search the web for sources.
-4. **LLMs (Large Language Models)**: Utilized by agents and chains for tasks like understanding content, writing responses, and citing sources. Examples include Claude, GPTs, etc.
-5. **Embedding Models**: To improve the accuracy of search results, embedding models re-rank the results using similarity search algorithms such as cosine similarity and dot product distance.
+1. **用户界面**: 一个基于 Web 的界面，允许用户与 Perplexica 进行交互，用于搜索图片、视频等等。
+2. **智能体/链**: 这些组件预测 Perplexica 的下一个动作，理解用户的查询，并判断是否需要进行网络搜索。
+3. **SearXNG**: Perplexica 使用的一个元数据搜索引擎，用于在网络中搜索资源。
+4. **LLM (大型语言模型)**: 由智能体和链使用，用于理解内容、编写响应和引用来源等任务。示例包括 Claude、GPT 等。
+5. **嵌入模型**: 为了提高搜索结果的准确性，嵌入模型使用相似性搜索算法（如余弦相似度和点积距离）重新排序搜索结果。
 
-For a more detailed explanation of how these components work together, see [WORKING.md](https://github.com/ItzCrazyKns/Perplexica/tree/master/docs/architecture/WORKING.md).
+有关这些组件如何协同工作的更详细说明，请参阅 [WORKING.md](https://github.com/ItzCrazyKns/Perplexica/tree/master/docs/architecture/WORKING.md)。
